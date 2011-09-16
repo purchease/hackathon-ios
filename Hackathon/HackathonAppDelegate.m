@@ -7,6 +7,7 @@
 //
 
 #import "HackathonAppDelegate.h"
+#import "RestKit/RestKit.h"
 
 @implementation HackathonAppDelegate
 
