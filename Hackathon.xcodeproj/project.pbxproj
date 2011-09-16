@@ -52,6 +52,7 @@
 		432AD356142408F0003CEBDB /* DDXMLElementAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 432AD33B142408F0003CEBDB /* DDXMLElementAdditions.m */; };
 		432AD357142408F0003CEBDB /* DDXMLNode.m in Sources */ = {isa = PBXBuildFile; fileRef = 432AD33D142408F0003CEBDB /* DDXMLNode.m */; };
 		432AD358142408F0003CEBDB /* NSStringAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 432AD340142408F0003CEBDB /* NSStringAdditions.m */; };
+		432AD35F14240FB1003CEBDB /* FoursquareWebLogin.m in Sources */ = {isa = PBXBuildFile; fileRef = 432AD35E14240FB1003CEBDB /* FoursquareWebLogin.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -239,6 +240,8 @@
 		432AD33E142408F0003CEBDB /* DDXMLPrivate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DDXMLPrivate.h; sourceTree = "<group>"; };
 		432AD33F142408F0003CEBDB /* NSStringAdditions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSStringAdditions.h; sourceTree = "<group>"; };
 		432AD340142408F0003CEBDB /* NSStringAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSStringAdditions.m; sourceTree = "<group>"; };
+		432AD35D14240FB1003CEBDB /* FoursquareWebLogin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FoursquareWebLogin.h; path = Libraries/Foursquare/FoursquareWebLogin.h; sourceTree = SOURCE_ROOT; };
+		432AD35E14240FB1003CEBDB /* FoursquareWebLogin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FoursquareWebLogin.m; path = Libraries/Foursquare/FoursquareWebLogin.m; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -381,6 +384,8 @@
 			children = (
 				432AD267142405FE003CEBDB /* Foursquare.h */,
 				432AD268142405FE003CEBDB /* Foursquare.m */,
+				432AD35D14240FB1003CEBDB /* FoursquareWebLogin.h */,
+				432AD35E14240FB1003CEBDB /* FoursquareWebLogin.m */,
 				432AD302142408F0003CEBDB /* Support */,
 			);
 			name = Foursquare;
@@ -701,6 +706,7 @@
 				432AD356142408F0003CEBDB /* DDXMLElementAdditions.m in Sources */,
 				432AD357142408F0003CEBDB /* DDXMLNode.m in Sources */,
 				432AD358142408F0003CEBDB /* NSStringAdditions.m in Sources */,
+				432AD35F14240FB1003CEBDB /* FoursquareWebLogin.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

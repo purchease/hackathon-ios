@@ -7,6 +7,8 @@
 //
 
 #import "HackathonAppDelegate.h"
+#import "Foursquare.h"
+#import "FoursquareWebLogin.h"
 #import "RestKit/RestKit.h"
 
 @implementation HackathonAppDelegate
@@ -20,7 +22,81 @@
     // Add the navigation controller's view to the window and display.
     self.window.rootViewController = self.navigationController;
     [self.window makeKeyAndVisible];
-    return YES;
+    
+    //	[Foursquare removeAccessToken];
+	if ([Foursquare isNeedToAuthorize]) {
+        /*
+		[self authorizeWithViewController:viewController 
+                                 Callback:^(BOOL success,id result){
+                                     if (success) {
+                                         [Foursquare  getDetailForUser:@"self"
+                                                               callback:^(BOOL success, id result){
+                                                                   if (success) {
+                                                                       [self test_method];
+                                                                   }
+                                                               }];
+                                     }
+                                 }];
+         */
+	}else {
+		/*
+		[Foursquare  getDetailForUser:@"self"
+							  callback:^(BOOL success, id result){
+								  if (success) {
+									  [self test_method];
+								  }
+							  }];
+        
+        //		Example check-in 
+        //		[Foursquare  createCheckinAtVenue:@"6522771"
+        //									 venue:nil
+        //									 shout:@"Testing"
+        //								 broadcast:broadcastPublic
+        //								  latitude:nil
+        //								 longitude:nil
+        //								accuracyLL:nil
+        //								  altitude:nil
+        //							   accuracyAlt:nil
+        //								  callback:^(BOOL success, id result){
+        //								if (success) {
+        //									NSLog(@"%@",result);
+        //								}
+        //							}];
+         */
+	}
+    
+	return YES;
+}
+
+
+-(void)test_method{
+    NSLog(@"test");
+}
+
+FoursquareCallback authorizeCallbackDelegate;
+-(void)authorizeWithViewController:(UIViewController*)controller
+						  Callback:(FoursquareCallback)callback{
+	authorizeCallbackDelegate = [callback copy];
+	NSString *url = [NSString stringWithFormat:@"https://foursquare.com/oauth2/authenticate?display=touch&client_id=%@&response_type=code&redirect_uri=%@",OAUTH_KEY,REDIRECT_URL];
+	FoursquareWebLogin *loginCon = [[FoursquareWebLogin alloc] initWithUrl:url];
+	loginCon.delegate = self;
+	loginCon.selector = @selector(setCode:);
+	UINavigationController *navCon = [[UINavigationController alloc]initWithRootViewController:loginCon];
+	
+	[controller presentModalViewController:navCon animated:YES];
+	[navCon release];
+	[loginCon release];	
+}
+
+-(void)setCode:(NSString*)code{
+	[Foursquare getAccessTokenForCode:code callback:^(BOOL success,id result){
+		if (success) {
+			[Foursquare setBaseURL:[NSURL URLWithString:@"https://api.foursquare.com/v2/"]];
+			[Foursquare setAccessToken:[result objectForKey:@"access_token"]];
+			authorizeCallbackDelegate(YES,result);
+            [authorizeCallbackDelegate release];
+		}
+	}];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
